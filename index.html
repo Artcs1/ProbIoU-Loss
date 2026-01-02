@@ -290,22 +290,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-          As visual assistant systems powered by visual language models (VLMs) be-
-come more prevalent, concerns over user privacy have grown, particularly
-for blind and low vision users who may unknowingly capture personal
-private information in their images. Existing privacy protection methods
-rely on coarse-grained segmentation, which uniformly masks entire private
-objects, often at the cost of usability. In this work, we propose FiG-Priv, a
-fine-grained privacy protection framework that selectively masks only high-risk
-private information while preserving low-risk information. Our approach
-integrates fine-grained segmentation with a data-driven risk scoring mech-
-anism. By leveraging a more nuanced understanding of privacy risk, our
-method enables more effective protection without unnecessarily restricting
-users’ access to critical information. We evaluate our framework using the
-BIV-Priv-Seg dataset and show that FiG-Priv preserves +26% of image
-content, enhancing the ability of VLMs to provide useful responses by 11%
-and identify the image content by 45%, while ensuring privacy protection.
-            
+          Oriented object detection is a challenging and relatively new problem. Most existing approaches are based on deep learning and explore Oriented Bounding Boxes (OBBs) to represent the objects. They are typically based on adaptations of traditional detectors that work with Horizontal Bounding Boxes (HBBs), which have been exploring IoU-like loss functions to regress the HBBs. However, extending this idea for OBBs is challenging due to complex formulations or requirement for customized backpropagation implementations. Furthermore, using OBBs presents limitations for irregular or roughly circular objects, since the definition of the ideal OBB is an ambiguous and ill-posed problem. In this work, we jointly tackle the problem of training, representing, and evaluating oriented detectors. We explore Gaussian distributions  -- called Gaussian Bounding Boxes (GBBs) -- as fuzzy representations for oriented objects and propose using a similarity metric between two GBBs based on the Hellinger distance. We show that this metric leads to a differentiable closed-form expression that can be directly used as a localization loss term to train OBB object detectors. We also show that GBBs present a natural representation as elliptical regions (called EBBs), which inherently mitigate ambiguity representation for circular objects. Finally, we empirically show that the proposed similarity metric computed between two GBBs strongly correlates with the IoU between the corresponding EBBs, motivating the name Probabilistic Intersection-over-Union (ProbIoU). Our experiments show that results using ProbIoU as a regression loss are competitive with state-of-the-art alternatives without requiring additional hyperparameters or customized implementations, and that ProbIoU is a promising alternative to evaluate oriented object detectors.
           </p>
         </div>
             <div class="publication-image">
