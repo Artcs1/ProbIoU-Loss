@@ -480,7 +480,103 @@ $$
             <h2 class="title is-3">Results</h2>
             <div class="content has-text-justified">
             <p>
-            To evaluate VLM performance across the three masking strategies, we first test object recognition in two settings: when the private object is the focus of the question, and when a control object is the focus with the private object in the background.
+            <ul>
+  <li>
+    We use the MAP metric to compare our method with other SOTA methods.
+  </li>
+</ul>
+
+<table border="1" cellspacing="0" cellpadding="4" style="font-size:0.85em; border-collapse:collapse; width:100%;">
+  <thead>
+    <tr>
+      <th rowspan="2">Loss</th>
+      <th>AP<sub>50</sub></th>
+      <th>AP<sub>60</sub></th>
+      <th>AP<sub>75</sub></th>
+      <th>AP<sub>85</sub></th>
+      <th>AP</th>
+      <th>AP<sub>50</sub></th>
+      <th>AP<sub>60</sub></th>
+      <th>AP<sub>75</sub></th>
+      <th>AP<sub>85</sub></th>
+      <th>AP</th>
+    </tr>
+    <tr>
+      <th colspan="5">ICDAR2015 (RetinaNet)</th>
+      <th colspan="5">ICDAR2015 (R<sup>3</sup>Det)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Smooth ℓ₁</td>
+      <td>72.91</td><td>65.06</td><td>35.10</td><td>7.62</td><td>37.84</td>
+      <td>76.66</td><td>68.34</td><td>33.56</td><td>5.82</td><td>38.62</td>
+    </tr>
+    <tr>
+      <td>GWD</td>
+      <td>73.49</td><td>65.83</td><td>32.94</td><td>7.71</td><td>37.55</td>
+      <td>76.60</td><td>68.42</td><td>35.44</td><td>7.47</td><td>39.34</td>
+    </tr>
+    <tr>
+      <td>KLD</td>
+      <td>75.60</td><td>67.62</td><td>35.87</td><td>7.61</td><td>39.21</td>
+      <td>77.40</td><td>70.09</td><td>35.44</td><td>6.93</td><td>39.83</td>
+    </tr>
+    <tr>
+      <td><strong>\(\text{ProbIoU}\)</strong></td>
+      <td>76.64</td><td>69.02</td><td>36.39</td><td>8.91</td><td>40.14</td>
+      <td>77.54</td><td>70.67</td><td>35.89</td><td>6.49</td><td>40.03</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<ul>
+  <li>
+    For DOTAv1 we use its evaluation server (only AP<sub>50</sub>).
+  </li>
+</ul>
+
+<table border="1" cellspacing="0" cellpadding="4" style="font-size:0.8em; border-collapse:collapse; width:100%;">
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Loss</th>
+      <th colspan="15">Per-class AP</th>
+      <th>AP<sub>50</sub></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5">R-50 RetinaNet</td>
+      <td>Smooth ℓ₁</td>
+      <td colspan="15">…</td>
+      <td>66.43</td>
+    </tr>
+    <tr>
+      <td>GWD</td>
+      <td colspan="15">…</td>
+      <td>66.05</td>
+    </tr>
+    <tr>
+      <td>KLD</td>
+      <td colspan="15">…</td>
+      <td>69.99</td>
+    </tr>
+    <tr>
+      <td>r-IoU</td>
+      <td colspan="15">…</td>
+      <td>69.58</td>
+    </tr>
+    <tr>
+      <td><strong>\(\text{ProbIoU}\)</strong></td>
+      <td colspan="15">…</td>
+      <td>69.66</td>
+    </tr>
+  </tbody>
+</table>
+              
             </p>
             </div>
             <div class="publication-image">
@@ -488,20 +584,6 @@ $$
             </div>
         </div>
     </div>
-    
-    <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-            <div class="content has-text-justified">
-            <p>
-            We also evaluate VLM performance on the VQA task using realistic, human-asked questions. Note that, high-risk masking achieves an answerability rate closest to that of the full image.
-            </p>
-            </div>
-            <div class="publication-image">
-            <img src="./static/answerable_plots.jpg" alt="Description of the image">
-            </div>
-        </div>
-    </div>
-
     
     <!--/ Paper video. -->
   </div>
