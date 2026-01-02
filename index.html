@@ -39,6 +39,33 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+    <meta charset="UTF-8">
+  <title>Converted LaTeX to HTML</title>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.85em;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 6px;
+      text-align: center;
+    }
+  </style>
+  
 </head>
 <body>
 
@@ -305,7 +332,135 @@
             <h2 class="title is-3">Approach</h2>
             <div class="content has-text-justified">
             <p>
-            We propose the FiG-Priv framework, which combines fine-grained segmentation with a data-driven risk scoring mechanism.
+
+            <ul>
+  <li>
+    If we use a fuzzy object representation based on GBBs, we can calculate
+    \( B_D \) (distance measure) and present closed-form expressions in terms of
+    the GBB parameters.
+  </li>
+
+  <li>
+    Considering that
+    \( p \sim \mathcal{N}(\boldsymbol{\mu}_1, \Sigma_1) \) and
+    \( q \sim \mathcal{N}(\boldsymbol{\mu}_2, \Sigma_2) \)
+    are Gaussian distributions with
+  </li>
+</ul>
+
+$$
+\boldsymbol{\mu}_1 =
+\begin{pmatrix}
+x_1 \\ y_1
+\end{pmatrix},
+\quad
+\Sigma_1 =
+\begin{bmatrix}
+a_1 & c_1 \\
+c_1 & b_1
+\end{bmatrix},
+\quad
+\boldsymbol{\mu}_2 =
+\begin{pmatrix}
+x_2 \\ y_2
+\end{pmatrix},
+\quad
+\Sigma_2 =
+\begin{bmatrix}
+a_2 & c_2 \\
+c_2 & b_2
+\end{bmatrix}
+$$
+
+<p>we obtain:</p>
+
+$$
+B_D =
+\frac{1}{8}(\boldsymbol{\mu}_1 - \boldsymbol{\mu}_2)^T
+\Sigma^{-1}
+(\boldsymbol{\mu}_1 - \boldsymbol{\mu}_2)
++
+\frac{1}{2}
+\ln\left(
+\frac{\det \Sigma}
+{\sqrt{\det \Sigma_1 \det \Sigma_2}}
+\right),
+\quad
+\Sigma = \frac{1}{2}(\Sigma_1 + \Sigma_2)
+$$
+
+<p>since:</p>
+
+$$
+B_C = e^{-B_D},
+\quad
+H_D(p,q) = \sqrt{1 - B_C(p,q)},
+\quad
+\piou(p,q) = 1 - H_D(p,q)
+$$
+
+<ul>
+  <li>
+    \( \piou \) ranges from 0 to 1, with the following properties:
+  </li>
+</ul>
+
+<br><br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Loss</th>
+      <th rowspan="2">Implementation</th>
+      <th>Scale</th>
+      <th>Metric</th>
+      <th>Hyper</th>
+    </tr>
+    <tr>
+      <th>Invariance</th>
+      <th>Properties</th>
+      <th>parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r-IoU</td>
+      <td>Hard</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <td>Smooth ℓ₁</td>
+      <td>Easy</td>
+      <td>×</td>
+      <td>×</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <td>GWD</td>
+      <td>Easy</td>
+      <td>×</td>
+      <td>×</td>
+      <td>τ, f(·)</td>
+    </tr>
+    <tr>
+      <td>KLD</td>
+      <td>Easy</td>
+      <td>✓</td>
+      <td>×</td>
+      <td>τ, f(·)</td>
+    </tr>
+    <tr>
+      <td><strong>πou</strong></td>
+      <td>Easy</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>--</td>
+    </tr>
+  </tbody>
+</table>
+            
             </p>
             </div>
             <div class="publication-image">
